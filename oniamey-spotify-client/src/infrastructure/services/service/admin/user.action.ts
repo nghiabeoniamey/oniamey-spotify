@@ -28,18 +28,18 @@ export const useCreateUser = () => {
         mutationFn: (data: UserRequest) => createUser(data),
         onSuccess: () => {
             queryClient.invalidateQueries({
-                queryKey: [queryKey.admin.user.userCreate],
+                queryKey: [queryKey.admin.user.userList],
             })
         },
         onError: (error: any) => {
-            console.log(queryKey.admin.user.userCreate, "🚀 ~ userCreate ~ error:", error);
+            console.log(queryKey.admin.user.userList, "🚀 ~ userCreate ~ error:", error);
         },
     });
 };
 
 
 export const useGetUser = (
-    userId: Ref<string>, options?: any
+    userId: Ref<string | null>, options?: any
 ): UseQueryReturnType<Awaited<ReturnType<typeof getUser>>, Error> => {
     return useQuery({
         queryKey: [queryKey.admin.user.userDetail, userId,],
@@ -54,20 +54,23 @@ export const useUpdateUser = () => {
     return useMutation({
         mutationFn: ({userId, data,}: { userId: string; data: UserRequest; }) => updateUser(userId, data),
         onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: [queryKey.admin.user.userUpdate],});
+            queryClient.invalidateQueries({queryKey: [queryKey.admin.user.userList],});
         },
         onError: (error: any) => {
-            console.log(queryKey.admin.user.userUpdate + "🚀 ~ userUpdate ~ error:", error);
+            console.log(queryKey.admin.user.userList + "🚀 ~ userUpdate ~ error:", error);
         },
     });
 };
 
-export const useChangeStatusUser = (
-    userId: Ref<string>, options?: any
-): UseQueryReturnType<Awaited<ReturnType<typeof changeStatusUser>>, Error> => {
-    return useQuery({
-        queryKey: [queryKey.admin.user.userDelete, userId],
-        queryFn: () => changeStatusUser(userId),
-        ...options,
+export const useChangeStatusUser = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: (userId: string) => changeStatusUser(userId),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: [queryKey.admin.user.userList],});
+        },
+        onError: (error: any) => {
+            console.log(queryKey.admin.user.userList + "🚀 ~ userDelete ~ error:", error);
+        },
     });
 };

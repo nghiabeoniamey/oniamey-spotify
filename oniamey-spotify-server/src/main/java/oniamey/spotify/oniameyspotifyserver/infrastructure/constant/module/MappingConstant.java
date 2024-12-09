@@ -12,11 +12,6 @@ public class MappingConstant {
 
     public static final String API_GUEST_GUARD_ACCOUNT = "/api/guest-guard/account";
 
-    public static final String REDIRECT_AUTHENTICATION_AUTHOR_SWITCH = "/author-switch";
-    public static final String REDIRECT_AUTHENTICATION_FORBIDDEN = "/403";
-    public static final String REDIRECT_AUTHENTICATION_UNAUTHORIZED = "/401";
-    public static final String REDIRECT_AUTHENTICATION_INTERNAL_SERVER = "/500";
-
     public static final String API_USER_PREFIX = API_VERSION_PREFIX + USER;
     public static final String API_ADMIN_PREFIX = API_VERSION_PREFIX + ADMIN;
 
@@ -29,10 +24,10 @@ public class MappingConstant {
     public static final String API_USER_ACCOUNT = API_USER_PREFIX + "/account";
     public static final String API_USER_HISTORY = API_USER_PREFIX + "/history";
 
-    public static final String API_ADMIN_SONG = API_ADMIN_PREFIX + "/song";
-    public static final String API_ADMIN_PLAYLIST = API_ADMIN_PREFIX + "/playlist";
     public static final String API_ADMIN_USER = API_ADMIN_PREFIX + "/user";
-    public static final String API_ADMIN_ACCOUNT = API_ADMIN_PREFIX + "/account";
+    public static final String API_ADMIN_SONG = API_ADMIN_PREFIX + "/song";
+
+    public static final String API_COMMON_UPLOAD = API_COMMON + "/upload";
 
     /* AUTHENTICATION */
     public static final String API_AUTH_PREFIX = API_VERSION_PREFIX + "/auth";

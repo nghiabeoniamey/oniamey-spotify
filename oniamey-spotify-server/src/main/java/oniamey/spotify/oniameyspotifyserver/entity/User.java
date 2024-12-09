@@ -12,6 +12,7 @@ import lombok.Setter;
 import oniamey.spotify.oniameyspotifyserver.entity.base.PrimaryEntity;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.Role;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.Status;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.module.EntityProperties;
 
 import java.io.Serializable;
 
@@ -23,19 +24,22 @@ import java.io.Serializable;
 @Setter
 public class User extends PrimaryEntity implements Serializable {
 
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false, length = EntityProperties.LENGTH_NAME)
     private String userName;
 
-    @Column(length = 100, nullable = false)
+    @Column(nullable = false, length = EntityProperties.LENGTH_CODE)
     private String email;
 
-    @Column(length = 100, name = "password_hash")
+    @Column(name = "password_hash", length = EntityProperties.LENGTH_PASSWORD)
     private String password;
 
-    @Column(length = 50)
+    @Column(name = "password_secret", length = EntityProperties.LENGTH_PASSWORD_SECRET)
+    private String passwordSecret;
+
+    @Column(length = EntityProperties.LENGTH_CODE)
     private String subscriptionType;
 
-    @Column(length = 255)
+    @Column(length = EntityProperties.LENGTH_URL)
     private String profilePicture;
 
     @Enumerated(EnumType.ORDINAL)

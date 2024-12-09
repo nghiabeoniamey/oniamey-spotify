@@ -6,11 +6,12 @@
 
 <script setup lang="ts">
 import {useAuthStore} from "@/infrastructure/stores/auth";
-import {getUserInformation} from "@/utils/token.helper";
+import {getUserInformation, isTokenExpired} from "@/utils/token.helper";
 import {onMounted} from "vue";
 import {useRoute, useRouter} from "vue-router";
 import {ROLES} from "@/infrastructure/constants/role.ts";
 import {ROUTES_CONSTANTS} from "@/infrastructure/constants/path.ts";
+import {toast} from "vue3-toastify";
 
 const route = useRoute();
 
@@ -18,7 +19,7 @@ const router = useRouter();
 
 const authStore = useAuthStore();
 
-const {state} = route.query;
+const {state, error} = route.query;
 
 onMounted(() => {
   if (state) {
@@ -49,7 +50,15 @@ onMounted(() => {
     }
     return;
   }
-  router.push({name: ROUTES_CONSTANTS.AUTHENTICATION.name});
+
+  if (error) {
+    toast.warning(error);
+    authStore.logout();
+  }
+
+  setTimeout(() => {
+    router.push({name: ROUTES_CONSTANTS.AUTHENTICATION.name});
+  }, 4000);
 });
 </script>
 

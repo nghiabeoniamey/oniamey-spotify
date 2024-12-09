@@ -1,7 +1,8 @@
-package oniamey.spotify.oniameyspotifyserver.infrastructure.security.session;
+package oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.session;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.auth.Session;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.model.response.InfoUserSpotifyResponse;
 import org.springframework.stereotype.Component;
 

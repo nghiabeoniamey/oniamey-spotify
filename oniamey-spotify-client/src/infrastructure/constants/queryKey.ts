@@ -1,5 +1,9 @@
 export const queryKey = {
-    common: {},
+    common: {
+        upload: {
+            audio: "cmAudioKey"
+        }
+    },
     authentication: {
         login: "loginKey",
         logout: "logoutKey",
@@ -9,14 +13,15 @@ export const queryKey = {
         user: {
             userList: "adUserListKey",
             userDetail: "adUserDetailKey",
-            userCreate: "adUserCreateKey",
-            userUpdate: "adUserUpdateKey",
-            userDelete: "adUserDeleteKey"
+        },
+        song: {
+            songList: "adSongListKey",
+            songDetail: "adSongDetailKey",
+            genreList: "adGenresListKey",
         }
-
     },
 
-    manager: {
+    user: {
         another: {},
 
     },

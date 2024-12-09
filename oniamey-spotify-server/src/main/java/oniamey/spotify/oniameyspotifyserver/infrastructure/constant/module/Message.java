@@ -13,6 +13,7 @@ public class Message {
         public static final String CREATE_SUCCESS = "Tạo dữ liệu thành công";
         public static final String UPDATE_SUCCESS = "Cập nhật dữ liệu thành công";
         public static final String DELETE_SUCCESS = "Xóa dữ liệu thành công";
+        public static final String UPLOAD_SUCCESS = "Tải lên tệp audio thành công";
 
     }
 
@@ -27,7 +28,6 @@ public class Message {
         public static final String CLIENT_NOT_FOUND = "Không tìm thấy khách hàng";
         public static final String CALL_API_FAIL = "Gọi API thất bại";
         public static final String CALL_API_SUCCESS = "Gọi API thành công";
-        public static final String ERROR_REDIRECT_MODULE = "Lỗi khi chuyển hướng đến module! Vui lòng thử lại sau!";
     }
 
     public static class Response {

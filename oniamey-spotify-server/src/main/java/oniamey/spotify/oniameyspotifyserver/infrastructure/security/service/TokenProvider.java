@@ -12,10 +12,10 @@ import io.jsonwebtoken.security.SignatureException;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import oniamey.spotify.oniameyspotifyserver.entity.User;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.auth.Session;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.model.response.InfoUserSpotifyResponse;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user.UserPrincipal;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.repository.SecurityUserRepository;
-import oniamey.spotify.oniameyspotifyserver.infrastructure.security.session.Session;
-import oniamey.spotify.oniameyspotifyserver.infrastructure.security.user.UserPrincipal;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +33,7 @@ public class TokenProvider {
     @Value("${jwt.secret}")
     private String tokenSecret;
 
-    private final long TOKEN_EXP = System.currentTimeMillis() + 2 * 60 * 60 * 1000;
+    private static final long TOKEN_EXP = 2 * 60 * 60 * 1000;
 
     @Setter(onMethod_ = @Autowired)
     private SecurityUserRepository userAuthRepository;
@@ -70,7 +70,7 @@ public class TokenProvider {
                 .setSubject(subject)
                 .setClaims(claims)
                 .setIssuedAt(new java.util.Date(System.currentTimeMillis()))
-                .setExpiration(new java.util.Date(TOKEN_EXP))
+                .setExpiration(new java.util.Date(System.currentTimeMillis() + TOKEN_EXP))
                 .setIssuer("oniamey.spotify")
                 .signWith(Keys.hmacShaKeyFor(tokenSecret.getBytes()))
                 .compact();

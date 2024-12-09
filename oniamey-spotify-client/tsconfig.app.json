@@ -26,7 +26,8 @@
     },
     "types": [
       "vue3-toastify/global"
-    ]
+    ],
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

@@ -53,7 +53,9 @@ public class Helper {
     }
 
     public static Pageable createPageable(PageableRequest request) {
-        return createPageable(request, "created_date", "DESC");
+        int page = request.getPage() - 1;
+        int size = request.getSize() == 0 ? PaginationConstant.DEFAULT_SIZE : request.getSize();
+        return PageRequest.of(page, size);
     }
 
 

@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -14,6 +15,7 @@ import lombok.Setter;
 import oniamey.spotify.oniameyspotifyserver.entity.base.PrimaryEntity;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.InteractionType;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.Status;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.module.EntityProperties;
 
 import java.io.Serializable;
 
@@ -25,17 +27,17 @@ import java.io.Serializable;
 @Setter
 public class Playlist extends PrimaryEntity implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "user_id")
-    private User userId;
+    private User user;
 
-    @Column(length = 255)
+    @Column(length = EntityProperties.LENGTH_CONTENT)
     private String title;
 
-    @Column(length = 1000)
+    @Column(length = EntityProperties.LENGTH_CONTENT)
     private String description;
 
-    @Column(length = 50)
+    @Column(length = EntityProperties.LENGTH_CODE)
     private String privacySetting;
 
     @Enumerated(EnumType.ORDINAL)

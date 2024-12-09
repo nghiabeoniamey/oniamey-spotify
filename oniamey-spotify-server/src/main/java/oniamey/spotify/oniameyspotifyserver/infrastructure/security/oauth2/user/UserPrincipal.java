@@ -1,4 +1,4 @@
-package oniamey.spotify.oniameyspotifyserver.infrastructure.security.user;
+package oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user;
 
 import lombok.Getter;
 import lombok.Setter;

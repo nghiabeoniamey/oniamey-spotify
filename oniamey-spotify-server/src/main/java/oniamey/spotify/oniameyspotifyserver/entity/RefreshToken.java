@@ -18,7 +18,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "refresh_token")
-@DynamicUpdate
 public class RefreshToken extends PrimaryEntity implements Serializable {
 
     @Column(name = "refresh_token", length = 8000)

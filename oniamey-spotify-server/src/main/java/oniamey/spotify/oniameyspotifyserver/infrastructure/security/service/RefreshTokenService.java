@@ -5,7 +5,7 @@ import oniamey.spotify.oniameyspotifyserver.entity.RefreshToken;
 import oniamey.spotify.oniameyspotifyserver.entity.User;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.repository.SecurityRefreshRepository;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.repository.SecurityUserRepository;
-import oniamey.spotify.oniameyspotifyserver.infrastructure.security.user.UserPrincipal;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user.UserPrincipal;
 import oniamey.spotify.oniameyspotifyserver.util.DateTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

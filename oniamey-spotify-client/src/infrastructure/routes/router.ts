@@ -74,7 +74,7 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path: ROUTES_CONSTANTS.ADMIN.children.SONG.path,
                 name: ROUTES_CONSTANTS.ADMIN.children.SONG.name,
-                component: () => import('@/page/admin/Song.vue'),
+                component: () => import('@/page/admin/song/Song.vue'),
                 meta: {
                     requiresRole: ROLES.ADMIN,
                     requiresAuth: true
@@ -122,10 +122,8 @@ route.beforeEach((to, from, next) => {
     } else if (requiresRole && (!userRole || userRole !== to.meta.requiresRole)) {
         next({name: ROUTES_CONSTANTS.AUTHENTICATION.children.LOGIN.name});
     } else {
-        console.log(userRole);
         next();
     }
-
 });
 
 export default route;

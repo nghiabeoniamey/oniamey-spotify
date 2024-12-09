@@ -10,3 +10,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+#pagination-spotify button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-center span {
+    margin: 0 !important;
+}

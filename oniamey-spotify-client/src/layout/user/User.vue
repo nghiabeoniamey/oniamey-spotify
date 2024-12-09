@@ -103,12 +103,13 @@ const handleLogout = () => {
   auth.logout();
   router.push(ROUTES_CONSTANTS.AUTHENTICATION.path);
 };
+
 const menuItems = ref([
   {
     key: "1",
     icon: UserOutlined,
     label: "FEATURE",
-    path: ROUTES_CONSTANTS.USER.children.USER_FEATURE,
+    path: ROUTES_CONSTANTS.USER.children.LISTENING_TO_MUSIC,
   },
   {
     key: "sub1",

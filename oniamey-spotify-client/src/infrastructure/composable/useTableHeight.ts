@@ -5,7 +5,7 @@ export function useTableHeight(
   elementRef: Ref<HTMLElement | null>,
   minHeight: number = 0
 ) {
-  const tableHeight = ref<number | undefined>(undefined);
+  const tableHeight = ref<number | undefined | string>(undefined);
 
   const resizeTable = debounce(
     () => {

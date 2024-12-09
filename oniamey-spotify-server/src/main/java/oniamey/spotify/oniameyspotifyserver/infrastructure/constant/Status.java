@@ -10,7 +10,7 @@ public enum Status {
 
     INACTIVE;
 
-    public static List<String> InteractionTypes() {
+    public static List<String> Statuses() {
         return Arrays.stream(Status.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());

@@ -48,8 +48,8 @@ export const ROUTES_CONSTANTS = {
                 name: "playlist",
             },
             LISTENING_TO_MUSIC: {
-                path: "user-listening-to-music",
-                name: "user-listening-to-music",
+                path: "user-listening-to-song",
+                name: "user-listening-to-song",
             },
         },
     },

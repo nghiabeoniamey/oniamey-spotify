@@ -1,6 +1,7 @@
 package oniamey.spotify.oniameyspotifyserver.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -20,12 +21,12 @@ import java.io.Serializable;
 @Setter
 public class PlaylistSong extends PrimaryEntity implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "playlist_id")
-    private Playlist playlistId;
+    private Playlist playlist;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "song_id")
-    private Song songId;
+    private Song song;
 
 }

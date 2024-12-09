@@ -1,31 +1,44 @@
-import {PREFIX_API_USER_ADMIN} from "@/infrastructure/constants/url";
+import {PREFIX_API_ADMIN_USER} from "@/infrastructure/constants/url";
 import request from "@/infrastructure/services/request";
 import {DefaultResponse, PaginationParams, PaginationResponse, ResponseList} from "@/infrastructure/types/api.common";
 import {AxiosResponse} from "axios";
 import {Ref} from "vue";
 
-export interface FindUserRequest extends PaginationParams {
-    keyword: string | null;
-    status: number | null;
-    role: number | null;
-    subscriptionType: number | null;
+export interface PropertyUserParams {
+    keyword?: string | null;
+    status?: number | null;
+    role?: number | null;
+    subscriptionType?: string | null;
+
+    [key: string]: any;
+}
+
+export interface FindUserRequest extends PaginationParams, PropertyUserParams {
+
 }
 
 export interface UserRequest {
     name: string;
     email: string;
     password: string;
-    subscriptionType: number;
+    subscriptionType: subscriptionType;
     profilePicture: string;
     role: number;
     status: number;
+}
+
+export enum subscriptionType {
+    google = "google",
+    github = "github",
+    facebook = "facebook",
+    admin = "admin",
 }
 
 export type UserResponse = ResponseList & {
     name: string;
     email: string;
     password: string;
-    subscriptionType: number;
+    subscriptionType: string;
     profilePicture: string;
     role: number;
     status: number;
@@ -34,7 +47,7 @@ export type UserResponse = ResponseList & {
 
 export const getUsers = async (params: Ref<FindUserRequest>) => {
     const res = (await request({
-        url: `${PREFIX_API_USER_ADMIN}`,
+        url: `${PREFIX_API_ADMIN_USER}`,
         method: "GET",
         params: params.value,
     })) as AxiosResponse<
@@ -46,7 +59,7 @@ export const getUsers = async (params: Ref<FindUserRequest>) => {
 
 export const createUser = async (data: UserRequest) => {
     const res = (await request({
-        url: `${PREFIX_API_USER_ADMIN}`,
+        url: `${PREFIX_API_ADMIN_USER}`,
         method: "POST",
         data: data
     })) as AxiosResponse<
@@ -56,9 +69,9 @@ export const createUser = async (data: UserRequest) => {
     return res.data;
 };
 
-export const getUser = async (userId: Ref<string>) => {
+export const getUser = async (userId: Ref<string | null>) => {
     return await request({
-        url: `${PREFIX_API_USER_ADMIN}/${userId}`,
+        url: `${PREFIX_API_ADMIN_USER}/${userId}`,
         method: "GET"
     }) as AxiosResponse<
         DefaultResponse<PaginationResponse<Array<UserResponse>>>
@@ -67,7 +80,7 @@ export const getUser = async (userId: Ref<string>) => {
 
 export const updateUser = async (userId: string, data: UserRequest) => {
     return await request({
-        url: `${PREFIX_API_USER_ADMIN}/${userId}`,
+        url: `${PREFIX_API_ADMIN_USER}/${userId}`,
         method: "PUT",
         data: data
     }) as AxiosResponse<
@@ -75,9 +88,9 @@ export const updateUser = async (userId: string, data: UserRequest) => {
     >;
 };
 
-export const changeStatusUser = async (userId: Ref<string>) => {
+export const changeStatusUser = async (userId: string) => {
     return await request({
-        url: `${PREFIX_API_USER_ADMIN}/${userId}`,
+        url: `${PREFIX_API_ADMIN_USER}/${userId}`,
         method: "DELETE",
     }) as AxiosResponse<
         DefaultResponse<DefaultResponse<null>>

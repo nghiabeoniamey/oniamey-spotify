@@ -1,4 +1,4 @@
-package oniamey.spotify.oniameyspotifyserver.infrastructure.security.session;
+package oniamey.spotify.oniameyspotifyserver.infrastructure.constant.auth;
 
 public final class Session {
 

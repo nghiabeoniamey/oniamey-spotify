@@ -3,7 +3,7 @@ package oniamey.spotify.oniameyspotifyserver.infrastructure.security.service;
 import lombok.RequiredArgsConstructor;
 import oniamey.spotify.oniameyspotifyserver.entity.User;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.repository.SecurityUserRepository;
-import oniamey.spotify.oniameyspotifyserver.infrastructure.security.user.UserPrincipal;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user.UserPrincipal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;

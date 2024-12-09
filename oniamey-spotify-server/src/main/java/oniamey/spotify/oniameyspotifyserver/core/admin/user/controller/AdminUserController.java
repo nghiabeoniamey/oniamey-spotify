@@ -2,6 +2,7 @@ package oniamey.spotify.oniameyspotifyserver.core.admin.user.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import oniamey.spotify.oniameyspotifyserver.core.admin.user.model.request.AdminFindUserRequest;
 import oniamey.spotify.oniameyspotifyserver.core.admin.user.model.request.AdminUserRequest;
 import oniamey.spotify.oniameyspotifyserver.core.admin.user.service.AdminUserService;
@@ -19,12 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(MappingConstant.API_ADMIN_USER)
 @RequiredArgsConstructor
 @RestController
+@Slf4j
 public class AdminUserController {
 
     private final AdminUserService userService;
 
     @GetMapping()
-    public ResponseEntity<?> getUser(@Valid final AdminFindUserRequest request) {
+    public ResponseEntity<?> getUsers(@Valid final AdminFindUserRequest request) {
         return Helper.createResponseEntity(userService.getUsers(request));
     }
 

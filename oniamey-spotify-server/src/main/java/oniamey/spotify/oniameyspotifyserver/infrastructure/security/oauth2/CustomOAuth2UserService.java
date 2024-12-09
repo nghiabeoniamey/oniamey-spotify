@@ -10,7 +10,7 @@ import oniamey.spotify.oniameyspotifyserver.infrastructure.security.exception.OA
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user.OAuth2UserInfo;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user.OAuth2UserInfoFactory;
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.repository.SecurityUserRepository;
-import oniamey.spotify.oniameyspotifyserver.infrastructure.security.user.UserPrincipal;
+import oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user.UserPrincipal;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -53,6 +53,9 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         if (userAuthOptional.isPresent()) {
             User user = userAuthOptional.get();
+            if(user.getStatus().equals(Status.INACTIVE)){
+                throw new OAuth2AuthenticationProcessingException("The specified user is disabled");
+            }
             User userExist = (User) updateExistingUser(user, oAuth2UserInfo);
             return UserPrincipal.create(userExist, oAuth2User.getAttributes(), userExist.getRole().name());
         }
@@ -66,11 +69,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     }
 
     private Object registerNewUser(OAuth2UserRequest oAuth2UserRequest, OAuth2UserInfo oAuth2UserInfo) {
-        String email = oAuth2UserInfo.getEmail();
         User user = new User();
         user.setUserName(oAuth2UserInfo.getName());
-        user.setEmail(email);
-        user.setSubscriptionType(AuthProvider.google.name());
+        user.setEmail(oAuth2UserInfo.getEmail());
+        user.setSubscriptionType(oAuth2UserInfo.getSubscriptionType());
         user.setProfilePicture(oAuth2UserInfo.getImageUrl());
         user.setStatus(Status.ACTIVE);
         user.setRole(Role.USER);
@@ -81,6 +83,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
     private Object updateExistingUser(User existingUser, OAuth2UserInfo oAuth2UserInfo) {
         existingUser.setUserName(oAuth2UserInfo.getName());
         existingUser.setProfilePicture(oAuth2UserInfo.getImageUrl());
+        existingUser.setSubscriptionType(oAuth2UserInfo.getSubscriptionType());
         if (existingUser.getStatus() == null) existingUser.setStatus(Status.ACTIVE);
         return userRepository.save(existingUser);
     }

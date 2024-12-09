@@ -1,5 +1,7 @@
 package oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.user;
 
+import oniamey.spotify.oniameyspotifyserver.infrastructure.constant.AuthProvider;
+
 import java.util.Map;
 
 public class GoogleOAuth2UserInfo extends OAuth2UserInfo {
@@ -26,6 +28,11 @@ public class GoogleOAuth2UserInfo extends OAuth2UserInfo {
     @Override
     public String getImageUrl() {
         return (String) attributes.get("picture");
+    }
+
+    @Override
+    public String getSubscriptionType() {
+        return AuthProvider.google.name();
     }
 
 }

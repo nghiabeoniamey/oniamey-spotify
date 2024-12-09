@@ -102,8 +102,8 @@ const items = reactive([
   {
     key: '3',
     icon: () => h(DeploymentUnitOutlined),
-    label: 'Listening to music',
-    title: 'Listening to music',
+    label: 'Listening to song',
+    title: 'Listening to song',
   },
 ]);
 
@@ -137,11 +137,10 @@ const menuItems = ref([
   },
   {
     key: "3",
-    label: "Listening to music",
+    label: "Listening to song",
     path: ROUTES_CONSTANTS.ADMIN.children.LISTENING_TO_MUSIC.path,
   },
 ]);
-
 
 const handleClick: MenuProps['onClick'] = e => {
   const key = e?.key;

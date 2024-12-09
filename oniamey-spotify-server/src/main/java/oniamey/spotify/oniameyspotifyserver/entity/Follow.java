@@ -1,6 +1,7 @@
 package oniamey.spotify.oniameyspotifyserver.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -20,13 +21,13 @@ import java.io.Serializable;
 @Setter
 public class Follow extends PrimaryEntity implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "follower_id")
-    private User followerId;
+    private User follower;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "followee_id")
-    private User followeeId;
+    private User followee;
 
     private Long timeStamp;
 

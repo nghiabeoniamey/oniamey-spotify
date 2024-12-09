@@ -1,6 +1,6 @@
 export interface PaginationParams {
   page: number;
-  size: number;
+  size?: number;
   orderBy?: string;
   sortBy?: string;
   q?: string;
@@ -22,5 +22,5 @@ export interface PaginationResponse<T> {
 
 export type ResponseList = {
   id: string;
-  orderNumber: number;
+  catalog: number;
 };

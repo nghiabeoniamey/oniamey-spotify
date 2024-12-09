@@ -6,11 +6,13 @@ import java.util.stream.Collectors;
 
 public enum Role {
 
+    ADMIN,
+
     USER,
 
-    ADMIN;
+    ANOTHER;
 
-    public static List<String> InteractionTypes() {
+    public static List<String> Roles() {
         return Arrays.stream(Role.values())
                 .map(Enum::name)
                 .collect(Collectors.toList());

@@ -10,7 +10,7 @@ public interface AdminUserResponse extends BaseResponse {
 
     String getPassword();
 
-    Integer getSubscriptionType();
+    String getSubscriptionType();
 
     String getProfilePicture();
 

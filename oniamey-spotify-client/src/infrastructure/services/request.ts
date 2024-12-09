@@ -34,7 +34,7 @@ request.interceptors.response.use(
             error.response &&
             error.response.status === 401 &&
             !originalRequest._retry &&
-            window.location.pathname !== ROUTES_CONSTANTS.LOGIN.path
+            window.location.pathname !== ROUTES_CONSTANTS.AUTHENTICATION.children.LOGIN.path
         ) {
             originalRequest._retry = true;
 
@@ -59,7 +59,7 @@ request.interceptors.response.use(
             localStorageAction.remove(ACCESS_TOKEN_STORAGE_KEY);
             localStorageAction.remove(REFRESH_TOKEN_STORAGE_KEY);
             localStorageAction.remove(USER_INFO_STORAGE_KEY);
-            await router.push(ROUTES_CONSTANTS.LOGIN.path);
+            await router.push(ROUTES_CONSTANTS.AUTHENTICATION.path);
         }
 
         return Promise.reject(error);

@@ -1,4 +1,4 @@
-package oniamey.spotify.oniameyspotifyserver.infrastructure.security.session;
+package oniamey.spotify.oniameyspotifyserver.infrastructure.security.oauth2.session;
 
 import oniamey.spotify.oniameyspotifyserver.infrastructure.security.model.response.InfoUserSpotifyResponse;
 
